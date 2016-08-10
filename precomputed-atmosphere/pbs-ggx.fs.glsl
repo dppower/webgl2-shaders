@@ -1,4 +1,5 @@
 #include <glsl.h>
+precision mediump float;
 
 const float PI = 3.1415926536;
 

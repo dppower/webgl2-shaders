@@ -1,4 +1,6 @@
 Debug/
+*.db
+*.opendb
 *.h
 *.exe
 *.ps1

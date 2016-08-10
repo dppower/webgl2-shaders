@@ -20,10 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="uniform-colour.fs.glsl" />
-    <None Include="basic.vs.glsl" />
+    <None Include="basic-object.vs.glsl" />
     <None Include="diffuse-oren-nayar.fs.glsl" />
     <None Include="diffuse-basic.fs.glsl" />
-    <None Include="single-texture-diffuse-shading.vs.glsl" />
+    <None Include="single-texture-object.vs.glsl" />
     <None Include="pbs-ggx.fs.glsl" />
     <None Include="inscattering.fs.glsl" />
     <None Include="irradiance-map.fs.glsl" />

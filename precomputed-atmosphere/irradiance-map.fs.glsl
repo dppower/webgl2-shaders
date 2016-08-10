@@ -1,3 +1,6 @@
+#include <glsl.h>
+precision mediump float;
+
 // This shader takes an environment cubemap as input and generates an irradiance map.
 
 precision mediump float;
@@ -14,17 +17,17 @@ void main() {
 	vec3 view = vec3(0,0,0);
 	
 	if (uCubeFace == 0) // Right
-		view = normalize(-vViewDirection.z, vViewDirection.y, vViewDirection.x);
+		view = normalize(vec3(-vViewDirection.z, vViewDirection.y, vViewDirection.x));
 	else if (uCubeFace == 1) // Left
-		view = normalize(vViewDirection.z, vViewDirection.y, -vViewDirection.x);
+		view = normalize(vec3(vViewDirection.z, vViewDirection.y, -vViewDirection.x));
 	else if (uCubeFace == 2) // Up
-		view = normalize(vViewDirection.x, -vViewDirection.z, vViewDirection.y);
+		view = normalize(vec3(vViewDirection.x, -vViewDirection.z, vViewDirection.y));
 	else if (uCubeFace == 3) // Down
-		view = normalize(vViewDirection.x, vViewDirection.z, -vViewDirection.y);
+		view = normalize(vec3(vViewDirection.x, vViewDirection.z, -vViewDirection.y));
 	else if (uCubeFace == 4) // Front
-		view = normalize(vViewDirection);
+		view = normalize(vec3(vViewDirection));
 	else if (uCubeFace == 5) // Back
-		view = normalize(-vViewDirection.x, vViewDirection.y, -vViewDirection.z);
+		view = normalize(vec3(-vViewDirection.x, vViewDirection.y, -vViewDirection.z));
 	
 	vec3 up = vec3(0,1,0);
 	vec3 right = normalize(cross(up, view));
@@ -41,5 +44,5 @@ void main() {
 		}
 	}
 	vec3 averagedColour = sumColours / sampleCount;
-	gl_FragColor = vec4(averagedColour * P1, 1);
+	gl_FragColor = vec4(averagedColour * PI, 1);
 }
