@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fragment Shaders">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Vertex Shaders">
+      <UniqueIdentifier>{672be194-0b65-45de-9086-b9dfc4d4c410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Geometry Shaders">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{ffdfab65-c9e8-429e-8240-1fbd20f353bb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="inscattering.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="sky-quad.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="transmittance.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="sky-quad.vs.glsl">
+      <Filter>Vertex Shaders</Filter>
+    </None>
+    <None Include="texture-2d.vs.glsl">
+      <Filter>Vertex Shaders</Filter>
+    </None>
+    <None Include="texture-cube.vs.glsl">
+      <Filter>Vertex Shaders</Filter>
+    </None>
+    <None Include="diffuse-oren-nayar.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="irradiance-map.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="basic.vs.glsl">
+      <Filter>Vertex Shaders</Filter>
+    </None>
+    <None Include="single-texture-diffuse-shading.vs.glsl">
+      <Filter>Vertex Shaders</Filter>
+    </None>
+    <None Include="uniform-colour.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="pbs-ggx.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="diffuse-basic.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="glsl.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
