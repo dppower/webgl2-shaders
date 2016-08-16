@@ -41,20 +41,20 @@
     <None Include="irradiance-map.fs.glsl">
       <Filter>Fragment Shaders</Filter>
     </None>
-    <None Include="uniform-colour.fs.glsl">
-      <Filter>Fragment Shaders</Filter>
-    </None>
     <None Include="pbs-ggx.fs.glsl">
       <Filter>Fragment Shaders</Filter>
     </None>
-    <None Include="diffuse-basic.fs.glsl">
+    <None Include="base-texture.vs.glsl">
+      <Filter>Vertex Shaders</Filter>
+    </None>
+    <None Include="diffuse-base-texture.fs.glsl">
       <Filter>Fragment Shaders</Filter>
     </None>
-    <None Include="basic-object.vs.glsl">
+    <None Include="uniform-color.vs.glsl">
       <Filter>Vertex Shaders</Filter>
     </None>
-    <None Include="single-texture-object.vs.glsl">
-      <Filter>Vertex Shaders</Filter>
+    <None Include="diffuse-uniform-color.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

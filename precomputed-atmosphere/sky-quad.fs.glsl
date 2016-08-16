@@ -7,9 +7,12 @@ const float ATMOSPHERE_LIMIT = 6420.0;
 const float PI = 3.141592657;
 
 const float SUN_INTENSITY = 100.0;
+
+// At latitude 52.0, muS = cos((52.0 - 23.5) * PI / 180) at solar noon;
 const float MU_S = 0.8788171;
 
-uniform samplerCube u_inscatter_sampler;
+
+uniform sampler2D u_inscatter_sampler;
 //uniform sampler2D u_transmittance_sampler;
 
 varying vec3 v_view_direction;
@@ -20,7 +23,7 @@ void main() {
 	
 	vec3 v = normalize(v_view_direction);
 
-	vec4 inscatter_colour = textureCube(u_inscatter_sampler, v);
+	vec4 inscatter_colour = texture2D(u_inscatter_sampler, v);
 	//inscatter_colour *= SUN_INTENSITY;
 
 	//gl_FragColor = vec4(inscatter_colour.xyz, 1.0);

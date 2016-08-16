@@ -2,9 +2,6 @@
 precision mediump float;
 // Calculate the inscattering table, S, for single scattering
 
-// At latitude 52.0, muS = cos((52.0 - 23.5) * PI / 180) at solar noon;
-const float MU_S = 0.8788171;
-
 const float GROUND_RADIUS = 6360.0;
 const float ATMOSPHERE_LIMIT = 6420.0;
 
@@ -21,9 +18,10 @@ const float MIE_G = 0.8;
 
 const int INSCATTER_SAMPLES = 500;
 
-uniform sampler2D u_transmittance_sampler;
+uniform sampler2D transmittance_sampler;
+uniform vec3 sun_position;
 
-varying vec3 v_view_direction;
+varying vec2 coords;
 
 // Distance to intersection with upper atmosphere boundary given a radius and cosine of angle between unit view vector v, and unit position vector u.
 float view_distance(float mu, float r) {
@@ -35,7 +33,7 @@ vec4 transmittance(float mu, float r) {
 	// Map radius to the range (0, 1), likewise mu.
 	float x = (r - GROUND_RADIUS) / (ATMOSPHERE_LIMIT - GROUND_RADIUS);
 	float y = 0.5 * (1.0 + mu);
-	return texture2D(u_transmittance_sampler, vec2(x, y));
+	return texture2D(transmittance_sampler, vec2(x, y));
 }
 
 // Transmittance from point q, on line px, to point p.
@@ -104,11 +102,15 @@ vec4 inscatter(vec3 p, vec3 v, vec3 s) {
 }
 
 void main() {
-	vec3 v = normalize(v_view_direction);
-	vec3 p = vec3(0.0, GROUND_RADIUS + 0.002, 0.0);
-	vec3 s = vec3(0.0, MU_S, sqrt(1.0 - MU_S * MU_S));
+	//vec3 v = normalize(v_view_direction);
+	//vec3 p = vec3(0.0, GROUND_RADIUS + 0.002, 0.0);
+	//vec3 s = vec3(0.0, MU_S, sqrt(1.0 - MU_S * MU_S));
 
-    vec4 inscatter_colour = inscatter(p, v, s);
+	// h_q radial height of point q above the surface of the planet
+	float h_q = v_coordinates.x;
+	// cosine of angle 
+	float mu_h = v_coordinates.y;
+    vec4 inscatter_colour = inscatter(h_q, mu_h, sun_position);
 
     gl_FragColor = inscatter_colour;
 }
