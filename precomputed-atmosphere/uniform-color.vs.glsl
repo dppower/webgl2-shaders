@@ -2,17 +2,16 @@
 
 const vec3 light_position = vec3(1.0, 1.0, 1.0);
 
-attribute vec3 vertex_position;
-attribute vec3 vertex_normal;
-attribute vec2 vertex_texture_coords;
+in vec3 vertex_position;
+in vec3 vertex_normal;
 
 uniform mat4 view;
 uniform mat4 projection;
 uniform mat4 transform;
 
-varying vec3 normal;
-varying vec3 position;
-varying vec3 light_direction;
+out vec3 normal;
+out vec3 position;
+out vec3 light_direction;
 
 void main() {
 	vec4 viewspace_position = view * transform * vec4(vertex_position, 1.0);
