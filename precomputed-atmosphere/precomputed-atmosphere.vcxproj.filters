@@ -38,23 +38,26 @@
     <None Include="diffuse-oren-nayar.fs.glsl">
       <Filter>Fragment Shaders</Filter>
     </None>
-    <None Include="irradiance-map.fs.glsl">
-      <Filter>Fragment Shaders</Filter>
-    </None>
     <None Include="pbs-ggx.fs.glsl">
       <Filter>Fragment Shaders</Filter>
     </None>
-    <None Include="base-texture.vs.glsl">
+    <None Include="diffuse-base-texture.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="diffuse-uniform-color.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="diffuse-uniform-color.vs.glsl">
       <Filter>Vertex Shaders</Filter>
     </None>
-    <None Include="diffuse-base-texture.fs.glsl">
+    <None Include="uniform-color.fs.glsl">
       <Filter>Fragment Shaders</Filter>
     </None>
     <None Include="uniform-color.vs.glsl">
       <Filter>Vertex Shaders</Filter>
     </None>
-    <None Include="diffuse-uniform-color.fs.glsl">
-      <Filter>Fragment Shaders</Filter>
+    <None Include="diffuse-base-texture.vs.glsl">
+      <Filter>Vertex Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

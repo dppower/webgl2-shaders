@@ -19,19 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <None Include="diffuse-base-texture.vs.glsl" />
     <None Include="diffuse-uniform-color.fs.glsl" />
-    <None Include="base-texture.vs.glsl" />
     <None Include="diffuse-oren-nayar.fs.glsl" />
     <None Include="diffuse-base-texture.fs.glsl" />
-    <None Include="uniform-color.vs.glsl" />
+    <None Include="diffuse-uniform-color.vs.glsl" />
     <None Include="pbs-ggx.fs.glsl" />
     <None Include="inscattering.fs.glsl" />
-    <None Include="irradiance-map.fs.glsl" />
     <None Include="sky-quad.fs.glsl" />
     <None Include="sky-quad.vs.glsl" />
     <None Include="texture-2d.vs.glsl" />
     <None Include="texture-cube.vs.glsl" />
     <None Include="transmittance.fs.glsl" />
+    <None Include="uniform-color.fs.glsl" />
+    <None Include="uniform-color.vs.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glsl.h" />
