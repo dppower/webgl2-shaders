@@ -24,8 +24,12 @@
     <None Include="diffuse-oren-nayar.fs.glsl" />
     <None Include="diffuse-base-texture.fs.glsl" />
     <None Include="diffuse-uniform-color.vs.glsl" />
-    <None Include="pbs-ggx.fs.glsl" />
+    <None Include="inscattering-3d.fs.glsl" />
+    <None Include="irradiance-cubemap.fs.glsl" />
     <None Include="inscattering.fs.glsl" />
+    <None Include="pbr-ggx.fs.glsl" />
+    <None Include="per-vertex-color.fs.glsl" />
+    <None Include="per-vertex-color.vs.glsl" />
     <None Include="sky-quad.fs.glsl" />
     <None Include="sky-quad.vs.glsl" />
     <None Include="texture-2d.vs.glsl" />
@@ -33,9 +37,6 @@
     <None Include="transmittance.fs.glsl" />
     <None Include="uniform-color.fs.glsl" />
     <None Include="uniform-color.vs.glsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="glsl.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6EF9A762-C90E-41D5-BB8D-20D8D0067369}</ProjectGuid>

@@ -1,45 +1,39 @@
-#include <glsl.h>
-    
-const float PI = 3.14159265358979323846;
-const vec3 ambient_color = vec3(0.1, 0.1, 0.1);
+#include <glsl-300-es.h>
+precision mediump float;
 
-// A single fixed light position
-const vec3 light_position = vec3(1.0, 1.0, 1.0);
-const vec3 light_color = vec3(1.0, 1.0, 1.0);
-varying vec3 vVertexPosition;
-varying vec3 vNormal;
+const float ambient_color = 0.1;
 
-varying vec2 vTextureCoordinates;
+in vec3 position;
+in vec3 normal;
 
-uniform sampler2D uBaseTexture;
-uniform sampler2D uHighlightTexture;
+uniform vec4 uniform_color;
+uniform float roughness;
+uniform vec3 light_direction;
+
+out vec4 fragment_color;
 
 void main(void) {
-	vec3 normal = normalize(vNormal);
-	vec3 light = normalize(light_position - vVertexPosition);
-	vec3 view = normalize(-vVertexPosition);
+	vec3 n = normalize(normal);
+	vec3 l = normalize(light_direction);
+	vec3 v = normalize(-position);
 	
-	float NdotL = max(0.0, dot(normal, light));
-	float NdotV = max(0.0, dot(normal, view));
+	float mu_nl = max(0.0, dot(n, l));
+	float mu_nv = max(0.0, dot(n, v));
 	
-	float OneMinusNdotL2 = 1.0 - NdotL * NdotL;
-	float OneMinusNdotV2 = 1.0 - NdotV * NdotV;
-	float gamma = sqrt(OneMinusNdotL2 * OneMinusNdotV2);
-	
-	vec4 BaseTexture = texture2D(uBaseTexture, vTextureCoordinates);
-	float roughness = BaseTexture.a;
-	float roughness_squared = roughness * roughness;	
-	vec2 AB = vec2(1.0, 0.0) + vec2(0.45, -0.5) * (roughness_squared / (roughness_squared + vec2(0.57, 0.09));
-	
-	vec3 light_plane = normalize(light - NdotL * normal);
-	vec3 view_plane = normalize(view - NdotV * normal);
-	
-	float cos_phi = max(0.0, dot(light_plane, view_plane);
-	
-	float diffuse = NdotL * (AB.x + AB.y * cos_phi * gamma / max(NdotL, NdotV));
-	
-	vec3 colour = BaseTexture.xyz;
-	
-	gl_FragColor = vec4(colour * diffuse, 1.0);
+	float nu_nl = 1.0 - mu_nl * mu_nl;
+	float nu_nv = 1.0 - mu_nv * mu_nv;
+	float gamma = sqrt(nu_nl * nu_nv);
 
+	float a_2 = roughness * roughness;	
+	vec2 oren_nayar = vec2(1.0, 0.0) + vec2(0.45, -0.5) * (a_2 / (a_2 + vec2(0.57, 0.09)));
+	
+	vec3 light_plane = normalize(l - mu_nl * n);
+	vec3 view_plane = normalize(v - mu_nv * n);
+	
+	// phi = azimuthal angle between light and view planes
+	float cos_phi = max(0.0, dot(light_plane, view_plane));
+	
+	float diffuse = mu_nl * (oren_nayar.x + oren_nayar.y * cos_phi * gamma / max(mu_nl, mu_nv));
+	
+	fragment_color = vec4(uniform_color.xyz * (diffuse + ambient_color), 1.0);
 }

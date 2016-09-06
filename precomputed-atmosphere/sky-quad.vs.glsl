@@ -1,20 +1,19 @@
-#include <glsl.h>
+#include <glsl-300-es.h>
 
-attribute vec2 a_vertex_position;
+layout(location = 0) in vec2 vertex_position;
 
-//uniform mat4 u_inverse_projection;
-//uniform mat4 u_inverse_view;
+uniform mat4 inverse_projection;
+uniform mat4 inverse_view;
 
-varying vec3 v_view_direction;
-
-//varying vec2 v_coords;
+out vec3 view_direction;
 
 void main() {
-	gl_Position = vec4(a_vertex_position, 1.0, 1.0);
+	gl_Position = vec4(vertex_position, 0.0, 1.0);
 
-	//vec4 unprojected = u_inverse_projection * vec4(a_vertex_position, 1.0, 0.0);
+	//vec4 unprojected = inverse_projection * vec4(vertex_position, -1.0, 1.0);
+	//float u = 0.5 * (vertex_position.x + 1.0);
+	//float v = 0.5 * (vertex_position.y + 1.0);
 
-	//v_view_direction = normalize(mat3(u_inverse_view) * vec3(unprojected));
-	v_view_direction = normalize(vec3(a_vertex_position, 1.0));
-	//v_coords = a_vertex_position;
+	//view_direction = vec3(vertex_position.x, -1.0, -vertex_position.y);
+	view_direction = mat3(inverse_view) * vec3(vertex_position, -1.0);
 }

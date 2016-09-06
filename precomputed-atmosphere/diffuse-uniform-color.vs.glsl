@@ -1,23 +1,19 @@
-#include <glsl.h>
-
-const vec3 light_position = vec3(1.0, 1.0, 1.0);
+#include <glsl-300-es.h>
 
 in vec3 vertex_position;
 in vec3 vertex_normal;
 
-uniform mat4 view;
-uniform mat4 projection;
-uniform mat4 transform;
+uniform mat4 projection_matrix; // projection * view
+uniform mat4 view_matrix; // inverse camera transform * object transform
+uniform mat4 transform_matrix; // object transform
+uniform mat4 normal_matrix; // transpose(inverse(view))
 
-out vec3 normal;
 out vec3 position;
-out vec3 light_direction;
+out vec3 normal;
 
 void main() {
-	vec4 viewspace_position = view * transform * vec4(vertex_position, 1.0);
-	gl_Position = projection * viewspace_position;
+	gl_Position = projection_matrix * vec4(vertex_position, 1.0);
 
-	normal = vec3(view * transform * vec4(vertex_normal, 0.0));
-	position = vec3(viewspace_position);
-	light_direction = vec3(view * transform * vec4(light_position, 0.0));
+	normal = mat3(normal_matrix) * vertex_normal;
+	position = vec3(view_matrix * vec4(vertex_position, 1.0));
 }

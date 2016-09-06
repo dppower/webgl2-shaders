@@ -1,11 +1,11 @@
-#include <glsl.h>
+#include <glsl-300-es.h>
 
-attribute vec2 a_vertex_position;
+layout(location = 0) in vec2 vertex_position;
 
-varying vec2 v_coordinates;
+out vec2 coordinates;
 
 void main() {
-	gl_Position = vec4(a_vertex_position, 1.0, 1.0);
+	gl_Position = vec4(vertex_position, 0.0, 1.0);
 
-	v_coordinates = a_vertex_position;
+	coordinates = vertex_position;
 }

@@ -1,36 +1,24 @@
-#include <glsl.h>
+#include <glsl-300-es.h>
 precision mediump float;
+precision highp sampler3D;
+//uniform samplerCube inscatter_sampler;
+//uniform sampler2D transmittance_sampler;
 
-const float GROUND_RADIUS = 6360.0;
-const float ATMOSPHERE_LIMIT = 6420.0;
+uniform sampler3D inscatter_3d_sampler;
 
-const float PI = 3.141592657;
+in vec3 view_direction;
+uniform float layer;
+//in vec2 coordinates;
 
-const float SUN_INTENSITY = 100.0;
-
-// At latitude 52.0, muS = cos((52.0 - 23.5) * PI / 180) at solar noon;
-const float MU_S = 0.8788171;
-
-
-uniform sampler2D u_inscatter_sampler;
-//uniform sampler2D u_transmittance_sampler;
-
-varying vec3 v_view_direction;
-
-//varying vec2 v_coords;
+out vec4 fragment_color;
 
 void main() {
 	
-	vec3 v = normalize(v_view_direction);
+	float u = 0.5 * (view_direction.x + 1.0);
+	float v = 0.5 * (view_direction.y + 1.0);
+	vec3 view = vec3(u, v, layer);
 
-	vec4 inscatter_colour = texture2D(u_inscatter_sampler, v);
-	//inscatter_colour *= SUN_INTENSITY;
+	vec4 inscatter_texel = texture(inscatter_3d_sampler, view);
 
-	//gl_FragColor = vec4(inscatter_colour.xyz, 1.0);
-	//vec2 uv_coords = 0.5 * (v_coords + 1.0);
-
-	//vec4 inscatter_colour = texture2D(u_transmittance_sampler, uv_coords);
-	//inscatter_colour *= SUN_INTENSITY;
-
-	gl_FragColor = vec4(inscatter_colour.xyz, 1.0);
+	fragment_color = vec4(inscatter_texel.xyz, 1.0);
 }

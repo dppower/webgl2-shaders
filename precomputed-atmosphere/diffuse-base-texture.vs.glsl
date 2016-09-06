@@ -1,4 +1,4 @@
-#include <glsl.h>
+#include <glsl-300-es.h>
 
 const vec3 light_position = vec3(1.0, 1.0, 1.0);
 

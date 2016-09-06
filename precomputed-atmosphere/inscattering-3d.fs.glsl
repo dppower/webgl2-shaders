@@ -16,13 +16,14 @@ const float PHASE_FRACTION = 3.0 / (16.0 * PI);
 const float HALF_PHASE_FRACTION = 0.5 * PHASE_FRACTION;
 const float MIE_G = 0.8;
 
-const int INSCATTER_SAMPLES = 100;
+const int INSCATTER_SAMPLES = 50;
 const float sun_intensity = 100.0;
 
 uniform sampler2D transmittance_sampler;
-uniform vec3 noon_position;
+uniform float layer;
+uniform vec3 sun_direction;
 
-in vec3 view_direction;
+in vec2 coordinates;
 
 out vec4 fragment_color;
 
@@ -80,18 +81,10 @@ vec3 integrand(float mu_x, vec3 p, vec3 v, vec3 s, float d_q) {
 	return vec3(t_sp.xyz * (rayleigh + mie));
 }
 
-vec3 inscatter(vec3 p, vec3 v, vec3 s) {   
+vec3 inscatter(float mu_x, vec3 p, vec3 v, vec3 s) {   
 	vec3 colour;
-	vec3 n_p = normalize(p);
-	float mu_x = dot(n_p, v);
 	float r_p = length(p);
 	float d_i = view_distance(mu_x, r_p) / float(INSCATTER_SAMPLES);
-	
-	// Check if mu_x is less than mu_h, and return ground colour instead
-	float mu_h = -1.0 * sqrt(1.0 - pow((GROUND_RADIUS / r_p), 2.0));
-	if (mu_x < mu_h) {
-		return vec3(0.5, 0.66, 0.33);
-	}
 
 	vec3 colour_i = integrand(mu_x, p, v, s, 0.0);
 	for (int i = 1; i <= INSCATTER_SAMPLES; ++i) {
@@ -105,11 +98,25 @@ vec3 inscatter(vec3 p, vec3 v, vec3 s) {
 }
 
 void main() {
-	vec3 v = normalize(view_direction);
+	// zenith angle, [0, mu_h] mu_h is cosine of zenith angle to horizon;
 	vec3 p = vec3(0.0, GROUND_RADIUS + 0.002, 0.0);
-	vec3 s = normalize(noon_position);
+	float r_p = length(p);
+	float mu_h = -1.0 * sqrt(1.0 - pow((GROUND_RADIUS / r_p), 2.0));
+	float mu_x = 1.0 + (coordinates.x - 1.0) * (mu_h - 1.0) / 2.0;
+	// azimuthal angle
+	float phi = PI * (coordinates.y + 1.0);
 
-	vec3 inscatter_color = inscatter(p, v, s);
+	// convert polar coordinates to view vector:
+	float sin_theta = sqrt(1.0 - mu_x * mu_x);
+	float x = sin_theta * sin(phi);
+	float z = sin_theta * cos(phi);
+	vec3 view = normalize(vec3(x, mu_x, z));
+
+	vec3 sun = normalize(sun_direction);
+
+	vec3 inscatter_color = inscatter(mu_x, p, view, sun);
 
 	fragment_color = vec4(inscatter_color, 1.0);
+	//vec3 gradient_color = vec3(layer);
+	//fragment_color = vec4(gradient_color, 1.0);
 }

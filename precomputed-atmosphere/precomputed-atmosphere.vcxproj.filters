@@ -12,9 +12,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Headers">
-      <UniqueIdentifier>{ffdfab65-c9e8-429e-8240-1fbd20f353bb}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="inscattering.fs.glsl">
@@ -38,9 +35,6 @@
     <None Include="diffuse-oren-nayar.fs.glsl">
       <Filter>Fragment Shaders</Filter>
     </None>
-    <None Include="pbs-ggx.fs.glsl">
-      <Filter>Fragment Shaders</Filter>
-    </None>
     <None Include="diffuse-base-texture.fs.glsl">
       <Filter>Fragment Shaders</Filter>
     </None>
@@ -59,10 +53,20 @@
     <None Include="diffuse-base-texture.vs.glsl">
       <Filter>Vertex Shaders</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="glsl.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
+    <None Include="irradiance-cubemap.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="pbr-ggx.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="inscattering-3d.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="per-vertex-color.fs.glsl">
+      <Filter>Fragment Shaders</Filter>
+    </None>
+    <None Include="per-vertex-color.vs.glsl">
+      <Filter>Vertex Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

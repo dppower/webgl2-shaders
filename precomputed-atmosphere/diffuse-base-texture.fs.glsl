@@ -1,4 +1,4 @@
-#include <glsl.h>
+#include <glsl-300-es.h>
 precision mediump float;
 
 const float ambient_color = 0.1;
@@ -16,7 +16,7 @@ void main(void) {
 	vec3 n = normalize(normal);
 	vec3 l = normalize(light_direction - position);
 
-	vec4 texel_color = texture2D(texture_sampler, texture_coords);
+	vec4 texel_color = texture(texture_sampler, texture_coords);
 	float mu_nl = dot(n, l);
 	mu_nl = max(mu_nl, 0.0);
 

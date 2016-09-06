@@ -1,4 +1,4 @@
-#include <glsl.h>
+#include <glsl-300-es.h>
 precision mediump float;
 // To precalculate the transmittance term for atmospheric model for the inscattered light.
 
@@ -16,7 +16,9 @@ const float HM = 1.2;
 
 const int TRANSMITTANCE_SAMPLES = 500;
 
-varying vec2 v_coordinates;
+in vec2 coordinates;
+
+out vec4 fragment_color;
 
 // distance to intersection with upper atmosphere boundary
 float view_distance(float mu, float r) {
@@ -41,10 +43,10 @@ float optical_depth(float H, float r_p, float mu_x) {
 
 void main() {
 	// r_p = radius to point p, in range [GROUND_RADIUS, ATMOSPHERE_LIMIT]
-	float r_p = GROUND_RADIUS + ((1.0 + v_coordinates.x) * 0.5) * (ATMOSPHERE_LIMIT - GROUND_RADIUS);
+	float r_p = GROUND_RADIUS + ((1.0 + coordinates.x) * 0.5) * (ATMOSPHERE_LIMIT - GROUND_RADIUS);
 	// mu_x is in the range [1, mu_h], mu_h is cosine of angle between p and h (tangent point to ground, horizon).
-	float mu_x = 1.0 - 0.5 * (v_coordinates.y + 1.0) * (sqrt(1.0 - pow((GROUND_RADIUS / r_p), 2.0)));
+	float mu_x = 1.0 - 0.5 * (coordinates.y + 1.0) * (sqrt(1.0 - pow((GROUND_RADIUS / r_p), 2.0)));
 	
 	vec3 depth = BETA_R * optical_depth(HR, r_p, mu_x) + BETA_M_EX * optical_depth(HM, r_p, mu_x);
-    gl_FragColor = vec4(exp(-depth), 1.0);
+	fragment_color = vec4(exp(-depth), 1.0);
 }
