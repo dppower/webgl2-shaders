@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="diffuse-base-texture.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="diffuse-oren-nayar.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="diffuse-uniform-color.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="inscattering.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="inscattering-3d.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="irradiance-cubemap.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="pbr-ggx.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="per-vertex-color.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="sky-quad.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="uniform-color.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="transmittance.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+    <None Include="diffuse-base-texture.vs.glsl">
+      <Filter>Vertex</Filter>
+    </None>
+    <None Include="diffuse-uniform-color.vs.glsl">
+      <Filter>Vertex</Filter>
+    </None>
+    <None Include="per-vertex-color.vs.glsl">
+      <Filter>Vertex</Filter>
+    </None>
+    <None Include="sky-quad.vs.glsl">
+      <Filter>Vertex</Filter>
+    </None>
+    <None Include="texture-2d.vs.glsl">
+      <Filter>Vertex</Filter>
+    </None>
+    <None Include="texture-cube.vs.glsl">
+      <Filter>Vertex</Filter>
+    </None>
+    <None Include="uniform-color.vs.glsl">
+      <Filter>Vertex</Filter>
+    </None>
+    <None Include="blinn-phong.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Fragment">
+      <UniqueIdentifier>{a149b7bc-e893-464b-9828-88f12e7efe9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vertex">
+      <UniqueIdentifier>{a35cc49a-4e28-494a-bcae-13eae2d10e68}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

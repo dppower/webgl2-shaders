@@ -12,11 +12,9 @@ uniform vec4 uniform_color;
 out vec4 fragment_color;
 
 void main() {
-	vec3 n = normalize(normal);
-	vec3 l = normalize(light_direction);
+	vec3 N = normalize(normal);
+	vec3 L = normalize(light_direction);
+	float NoL = max(dot(N, L), 0.0);
 
-	float mu_nl = dot(n, l);
-	mu_nl = max(mu_nl, 0.0);
-
-	fragment_color = vec4(uniform_color.xyz * (ambient_color + mu_nl), 1.0);
+	fragment_color = vec4(uniform_color.rgb * (ambient_color + NoL), 1.0);
 }

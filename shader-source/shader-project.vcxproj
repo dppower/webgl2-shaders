@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <None Include="blinn-phong.fs.glsl">
+      <SubType>
+      </SubType>
+    </None>
     <None Include="diffuse-base-texture.vs.glsl" />
     <None Include="diffuse-uniform-color.fs.glsl" />
     <None Include="diffuse-oren-nayar.fs.glsl" />

@@ -3,5 +3,4 @@ Debug/
 *.opendb
 *.h
 *.exe
-*.ps1
 .vs/

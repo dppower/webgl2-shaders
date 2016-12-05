@@ -1,7 +1,7 @@
 #include <glsl-300-es.h>
 
 layout(location = 0) in vec3 vertex_position;
-layout(location = 2) in vec3 vertex_color;
+layout(location = 3) in vec3 vertex_color;
 
 uniform mat4 projection_matrix; // projection * view
 uniform mat4 view_matrix; // inverse camera transform * object transform
