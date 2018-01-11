@@ -1,7 +1,6 @@
 Debug
 *.db
 *.opendb
-*.h
 *.exe
 .vs
 *.user
