@@ -1,6 +1,8 @@
-Debug/
+Debug
 *.db
 *.opendb
 *.h
 *.exe
-.vs/
+.vs
+*.user
+*.ps1

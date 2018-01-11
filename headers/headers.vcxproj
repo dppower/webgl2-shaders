@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,33 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="blinn-phong.fs.glsl">
-      <SubType>
-      </SubType>
-      <FileType>Document</FileType>
-    </None>
-    <None Include="diffuse-base-texture.vs.glsl" />
-    <None Include="diffuse-uniform-color.fs.glsl" />
-    <None Include="diffuse-oren-nayar.fs.glsl" />
-    <None Include="diffuse-base-texture.fs.glsl" />
-    <None Include="diffuse-uniform-color.vs.glsl" />
-    <None Include="inscattering-3d.fs.glsl" />
-    <None Include="irradiance-cubemap.fs.glsl" />
-    <None Include="inscattering.fs.glsl" />
-    <None Include="pbr-ggx.fs.glsl" />
-    <None Include="per-vertex-color.fs.glsl" />
-    <None Include="per-vertex-color.vs.glsl" />
-    <None Include="sky-quad.fs.glsl" />
-    <None Include="sky-quad.vs.glsl" />
-    <None Include="texture-2d.vs.glsl" />
-    <None Include="texture-cube.vs.glsl" />
-    <None Include="transmittance.fs.glsl" />
-    <None Include="uniform-color.fs.glsl" />
-    <None Include="uniform-color.vs.glsl" />
+    <ClInclude Include="glsl-100.h" />
+    <ClInclude Include="glsl-300-es.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6EF9A762-C90E-41D5-BB8D-20D8D0067369}</ProjectGuid>
-    <RootNamespace>precomputed_atmosphere</RootNamespace>
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{558FC408-2E5D-402A-81DB-546581C42D77}</ProjectGuid>
+    <RootNamespace>headers</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -93,10 +73,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)headers;$(IncludePath)</IncludePath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
