@@ -33,6 +33,8 @@
     <None Include="irradiance-cubemap.fs.glsl" />
     <None Include="inscattering.fs.glsl" />
     <None Include="pbr-ggx.fs.glsl" />
+    <None Include="pbr.fs.glsl" />
+    <None Include="pbr.vs.glsl" />
     <None Include="per-vertex-color.fs.glsl" />
     <None Include="per-vertex-color.vs.glsl" />
     <None Include="sky-quad.fs.glsl" />

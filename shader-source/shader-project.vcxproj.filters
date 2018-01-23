@@ -58,6 +58,12 @@
     <None Include="blinn-phong.fs.glsl">
       <Filter>Fragment</Filter>
     </None>
+    <None Include="pbr.vs.glsl">
+      <Filter>Vertex</Filter>
+    </None>
+    <None Include="pbr.fs.glsl">
+      <Filter>Fragment</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Fragment">
