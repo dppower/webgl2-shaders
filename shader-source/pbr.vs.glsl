@@ -6,8 +6,8 @@ out vec3 v_position;
 layout(location = 1) in vec3 NORMAL;
 out vec3 v_normal;
 
-layout(location = 2) in vec4 TANGENT;
 #ifdef NORMAL_MAP_ACTIVE
+layout(location = 2) in vec4 TANGENT;
 out vec4 v_tangent;
 #endif
 

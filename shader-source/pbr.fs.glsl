@@ -4,8 +4,8 @@ precision highp float;
 // Constants:
 const float PI = 3.1415926536;
 
-uniform vec3 u_light_color = vec3(1.0);
-uniform vec3 u_light_direction = vec3(0.0, 0.0, -1.0);
+uniform vec3 u_light_color;
+uniform vec3 u_light_direction;
 
 #ifdef USE_IBL
 #endif
@@ -22,11 +22,11 @@ in vec2 v_texcoord_1;
 in vec4 v_color_0;
 #endif
 
-uniform vec4 u_base_color_factor = vec4(1.0);
+uniform vec4 u_base_color_factor;
 #ifdef BASE_COLOR_TEXTURE_ACTIVE
 uniform sampler2D u_base_color_texture;
 #endif
-uniform vec2 u_metallic_roughness_factors = vec2(1.0);
+uniform vec2 u_metallic_roughness_factors;
 #ifdef METAL_ROUGH_MAP_ACTIVE
 #ifdef OCCLUSION_ACTIVE
 uniform float u_occlusion_strength;
@@ -46,7 +46,7 @@ uniform sampler2D u_emissive_texture;
 uniform vec3 u_emissive_factor;
 #endif
 
-out vec4 final_color;
+out vec4 fragment_color;
 
 vec3 get_normal() {
 #ifdef NORMAL_MAP_ACTIVE
@@ -110,11 +110,11 @@ void main() {
 	vec3 normal = get_normal();
 	vec3 light = normalize(u_light_direction);
 	vec3 view = normalize(-v_position);
-	vec3 half = normalize(light + view);
+	vec3 half_vector = normalize(light + view);
 	
 	float NoL = max(0.0, dot(normal, light));
 	float NoV = max(0.0, dot(normal, view));
-	float NoH = max(0.0, dot(normal, half));
+	float NoH = max(0.0, dot(normal, half_vector));
 
 	//vec3 F0 = (metallic > 0.01) ? base_color : vec3(0.04);
 	vec3 F0 = mix(vec3(0.04), base_color.rgb, metallic);
@@ -125,10 +125,10 @@ void main() {
 	
 	//vec3 k_d = (metallic > 0.01) ? vec3(0.0) : (vec3(1.0) - F);
 	base_color *= 1.0 - metallic;
-	vec3 diffuse_color = (vec3(1.0) - F) * diffuse_lambert(base_color);
+	vec3 diffuse_color = (vec3(1.0) - F) * diffuse_lambert(vec3(base_color));
 
 	vec3 specular_color = D * G * F;
 	vec3 final_color = NoL * (diffuse_color + specular_color) * u_light_color;
 
-	final_color = vec4(final_color, 1.0);
+	fragment_color = vec4(final_color, 1.0);
 }
